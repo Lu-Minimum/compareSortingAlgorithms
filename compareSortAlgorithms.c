@@ -285,7 +285,7 @@ int main(void)
     double cpu_time_used;
 	char* fileNames[] = {"input1.txt", "input2.txt", "input3.txt"};
 	
-	for (i=0;i<2;++i)
+	for (i=0;i<3;++i)
 	{
 		int *pDataSrc, *pDataCopy;
 		int dataSz = parseData(fileNames[i], &pDataSrc);
