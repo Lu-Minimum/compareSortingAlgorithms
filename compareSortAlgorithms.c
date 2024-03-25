@@ -10,7 +10,7 @@ void *Alloc(size_t sz)
 	extraMemoryAllocated += sz;
 	size_t* ret = malloc(sizeof(size_t) + sz);
 	*ret = sz;
-	//printf("Extra memory allocated, size: %ld\n", sz);
+	printf("Extra memory allocated, size: %ld\n", sz);
 	return &ret[1];
 }
 
@@ -18,7 +18,7 @@ void DeAlloc(void* ptr)
 {
 	size_t* pSz = (size_t*)ptr - 1;
 	extraMemoryAllocated -= *pSz;
-	//printf("Extra memory deallocated, size: %ld\n", *pSz);
+	printf("Extra memory deallocated, size: %ld\n", *pSz);
 	free((size_t*)ptr - 1);
 }
 
@@ -314,7 +314,7 @@ int main(void)
 		printf("Dataset Size : %d\n",dataSz);
 		printf("---------------------------\n");
 		
-		/*printf("Selection Sort:\n");
+		printf("Selection Sort:\n");
 		memcpy(pDataCopy, pDataSrc, dataSz*sizeof(int));
 		extraMemoryAllocated = 0;
 		start = clock();
@@ -345,7 +345,7 @@ int main(void)
 		cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 		printf("\truntime\t\t\t: %.1lf\n",cpu_time_used);
 		printf("\textra memory allocated\t: %d\n",extraMemoryAllocated);
-		printArray(pDataCopy, dataSz);*/
+		printArray(pDataCopy, dataSz);
 		
 		printf("Merge Sort:\n");
 		memcpy(pDataCopy, pDataSrc, dataSz*sizeof(int));
