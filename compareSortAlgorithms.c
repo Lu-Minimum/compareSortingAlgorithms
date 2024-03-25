@@ -132,16 +132,31 @@ void mergeSort(int pData[], int l, int r)
 
 	int* tempArr = (int*) Alloc((1+r-l)*sizeof(int));
 	//c1 and c2 are positions in left and right sublists
-	int c1 = l, c2 = mid+1;
+	int c1 = l, c2 = mid+1, i;
+
 	//Merge sublists
 	//O(n)
-	for (int i = 0; i < (1+r-l); i++) {
-		if (pData[c2] < pData[c1]) {
+	for (i = 0; i < (1+r-l); i++) {
+		if (c2>r) {
+			tempArr[i] = pData[c1];
+			c1++;
+			continue;
+		}
+		if (c1>mid || pData[c2] < pData[c1]) {
 			tempArr[i] = pData[c2];
+			c2++;
 		} else {
 			tempArr[i] = pData[c1];
+			c1++;
 		}
 	}
+
+	//Copy the temp arr back to the data
+	//O(n)
+	for (i = 0; i < (1+r-l); i++) {
+		pData[l+i] = tempArr[i];
+	}
+
 	//Dealloc
 	DeAlloc(tempArr);
 }
@@ -299,7 +314,7 @@ int main(void)
 		printf("Dataset Size : %d\n",dataSz);
 		printf("---------------------------\n");
 		
-		printf("Selection Sort:\n");
+		/*printf("Selection Sort:\n");
 		memcpy(pDataCopy, pDataSrc, dataSz*sizeof(int));
 		extraMemoryAllocated = 0;
 		start = clock();
@@ -330,7 +345,7 @@ int main(void)
 		cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 		printf("\truntime\t\t\t: %.1lf\n",cpu_time_used);
 		printf("\textra memory allocated\t: %d\n",extraMemoryAllocated);
-		printArray(pDataCopy, dataSz);
+		printArray(pDataCopy, dataSz);*/
 		
 		printf("Merge Sort:\n");
 		memcpy(pDataCopy, pDataSrc, dataSz*sizeof(int));
